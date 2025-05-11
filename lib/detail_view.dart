@@ -8,17 +8,17 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('Powered by Giphy', style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),)),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            alignment: Alignment.center,
+            //alignment: Alignment.center,
             padding: EdgeInsets.all(10),
+            
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(7),
-                  child: Image.network(
+                  Image.network(
                     gif.images["original"]["url"],
 
                     loadingBuilder: (
@@ -27,11 +27,18 @@ class DetailScreen extends StatelessWidget {
                       ImageChunkEvent? loadingProgress,
                     ) {
                       if (loadingProgress == null) {
-                        return child;
+                        // return child;
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(7),
+                          child: child,
+                        );
                       }
                       return Center(
                         child: CircularProgressIndicator(
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                          padding: EdgeInsets.symmetric(
+                           horizontal: 50,
+                            vertical: 50,
+                          ),
                           value:
                               loadingProgress.expectedTotalBytes != null
                                   ? loadingProgress.cumulativeBytesLoaded /
@@ -55,22 +62,29 @@ class DetailScreen extends StatelessWidget {
                     },
                     fit: BoxFit.contain,
                   ),
-                ),
+                //),
 
                 Container(
                   padding: EdgeInsets.all(10),
                   child: Text(
                     gif.title,
                     style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: Text(
                     gif.sourceTld,
                     style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                )
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: SelectableText(
+                    gif.url,
+                    style: TextStyle(fontWeight: FontWeight.w300),
+                  ),
+                ),
               ],
             ),
           ),

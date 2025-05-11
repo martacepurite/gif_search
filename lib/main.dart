@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _loadMore() {
+
     setState(() {
       _futureGiphyResponseModel = fetchGiphyResponse(
         _controller.text,
@@ -61,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         });
       });
     });
-  }
+  } 
 
   void _loadMoreOnScroll() {
     if (_scrollController.position.pixels >=
@@ -88,7 +89,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Gif Search',
+      title: 'Gif Search (Powered by Giphy)',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 38, 6, 94),
@@ -99,8 +100,8 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           shadowColor: Colors.black,
           title: const Text(
-            'Gif Search',
-            style: TextStyle(fontWeight: FontWeight.w300),
+            'Gif Search (Powered by Giphy)',
+            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
           ),
         ),
         body: Container(

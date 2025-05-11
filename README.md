@@ -1,4 +1,5 @@
 # Gif Search
+## Powered by Giphy
 
 ## Notes
 - Flutter version 3.29.2
